@@ -1,8 +1,5 @@
 name: Api CI/CD
 
-permissions:
-      id-token: write
-
 on:
   push:
     branches: [ main ]
