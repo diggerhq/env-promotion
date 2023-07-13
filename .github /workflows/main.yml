@@ -1,0 +1,69 @@
+name: Api CI/CD
+
+permissions:
+      id-token: write
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      run: echo  Setup .NET Core
+      
+    - name: Build
+      run: echo  Build
+      
+    - name: Publish
+      run: echo  Publish
+      
+    - name: Zip Functions Package
+      run: echo  Zip Functions Package
+      
+    - name: Upload Deployment Zip
+      run: echo  Upload Deployment Zip
+       
+    - name: Upload Deployment Script
+      run: echo  Upload Deployment Script
+      
+  deploy_to_dev:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: dev
+    steps:
+    - name: Download a Deployment Zip
+      run: echo  Upload Deployment Script
+      
+    - name: Download a Deployment Script
+      run: echo  Upload Deployment Script
+      
+    - name: Azure Login
+      run: echo  Upload Deployment Script
+      
+    - name: Azure Deploy Resources
+      run: echo  Upload Deployment Script
+          
+  deploy_to_prod:
+    runs-on: ubuntu-latest
+    needs: deploy_to_dev
+    if: github.event_name != 'pull_request'
+    environment: prod
+    steps:
+    - name: Download a Deployment Zip
+      run: echo  Download a Deployment Zip
+      
+    - name: Download a Deployment Script
+      run: echo  Download a Deployment Script
+      
+    - name: Azure Login
+      run: echo  Azure Login
+      
+    - name: Azure Deploy Resources
+      if: github.event_name != 'pull_request'
+      run: echo Azure Deploy Resources  
