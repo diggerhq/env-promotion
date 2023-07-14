@@ -1,9 +1,8 @@
 terraform {
   backend "s3" {
-    bucket         = var.terraform_backend_bucket
-    key            = var.terraform_backend_key
-    region         = var.terraform_backend_region
-    dynamodb_table = var.terraform_backend_dynamodb_table
+    bucket         = "digger-terraform-state-209539466991"
+    key            = "4b0cb767-cde5-469c-909c-5a34698d1bbb"
+    region         = "us-east-1"
+    dynamodb_table = "digger-terraform-state-lock"
   }
 }
-
