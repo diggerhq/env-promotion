@@ -38,7 +38,7 @@ jobs:
       run: echo  Upload Deployment Script
 
     - name: digger run
-      uses: diggerhq/digger@v0.1.27
+      uses: diggerhq/digger@env-promotions-demo
       with:
         setup-aws: true
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
