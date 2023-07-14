@@ -44,6 +44,7 @@ jobs:
         aws-region: us-east-1
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
+        DIGGER_GITHUB_TOKEN: ${{ secrets.DIGGER_GITHUB_TOKEN }}
       
     - name: Download a Deployment Script
       run: echo  Upload Deployment Script
