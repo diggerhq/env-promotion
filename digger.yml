@@ -1,0 +1,3 @@
+projects:
+- name: infra
+  dir: infra
