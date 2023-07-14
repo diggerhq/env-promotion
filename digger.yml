@@ -1,3 +1,9 @@
 projects:
 - name: infra
   dir: infra
+  workflow: default
+
+workflows:
+  default:
+    workflow_configuration:
+      on_pull_request_pushed: ["digger plan"]
