@@ -3,6 +3,8 @@
 
 # What is this?
 
+
+
 These are the terraform files that define your infrastructure. It was generated using [digger](https://digger.dev). These configurations files will
 help you set up your environment on AWS in no time!
 
@@ -98,4 +100,6 @@ $ export AWS_PROFILE=digger-test2
 ```
 
 Where `digger-test2` is the name of the AWS profile
+
+
 
