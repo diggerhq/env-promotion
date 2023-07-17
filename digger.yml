@@ -9,11 +9,11 @@ workflows:
       on_pull_request_pushed: ["digger plan"]
     plan:
       steps:
-      - init:
+      - init
       - plan:
         extra_args: [ "-var-file=$ENV_NAME.tfvars" ]
     apply:
       steps:
-      - init:
+      - init
       - apply:
         extra_args: ["-var-file=$ENV_NAME.tfvars" ]
