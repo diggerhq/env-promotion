@@ -68,6 +68,18 @@ jobs:
     - name: Download a Deployment Zip
       run: echo  Download a Deployment Zip
       
+    - name: digger run
+      uses: diggerhq/digger@env-promotions
+      with:
+        setup-aws: true
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_VARS: ${{ toJson(vars) }}
+      
     - name: Download a Deployment Script
       run: echo  Download a Deployment Script
       
