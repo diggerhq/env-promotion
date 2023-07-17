@@ -7,3 +7,13 @@ workflows:
   default:
     workflow_configuration:
       on_pull_request_pushed: ["digger plan"]
+    plan:
+      steps:
+      - init:
+      - plan:
+        extra_args: [ "-var-file=$ENV_NAME.tfvars" ]
+    apply:
+      steps:
+      - init:
+      - apply:
+        extra_args: ["-var-file=$ENV_NAME.tfvars" ]
