@@ -11,9 +11,9 @@ workflows:
       steps:
       - init
       - plan:
-        extra_args: [ "-var-file=$ENV_NAME.tfvars" ]
+        extra_args: [ "-var-file=$(ENV_NAME).tfvars" ]
     apply:
       steps:
       - init
       - apply:
-        extra_args: ["-var-file=$ENV_NAME.tfvars" ]
+        extra_args: ["-var-file=$(ENV_NAME).tfvars" ]
