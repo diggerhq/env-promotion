@@ -4,7 +4,7 @@ provider "aws" {
 
 module "demo_vpc" {
   source                 = "./demo_vpc"
-  network_name           = "demo-vpc"
+  network_name           = "demo-vpc-${var.env_name}"
   region                 = var.aws_region
   enable_nat_gateway     = false
   one_nat_gateway_per_az = false
