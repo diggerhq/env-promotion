@@ -27,10 +27,7 @@ jobs:
     needs: build
     environment: dev
     steps:
-    - name: Download a Deployment Zip
-      run: echo  Upload Deployment Script
-
-    - name: digger run
+    - name: digger plan run
       uses: diggerhq/digger@develop
       with:
         mode: manual
@@ -44,16 +41,36 @@ jobs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ENV_NAME: ${{ vars.ENV_NAME }}
-      
-    - name: Download a Deployment Script
-      run: echo  Upload Deployment Script
-      
-    - name: Azure Login
-      run: echo  Upload Deployment Script
-      
-    - name: Azure Deploy Resources
-      run: echo  Upload Deployment Script
-          
+
+    - name: digger apply run
+      uses: diggerhq/digger@develop
+      with:
+        mode: manual
+        command: "digger apply"
+        project: "infra"
+        setup-aws: true
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ENV_NAME: ${{ vars.ENV_NAME }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: env-promotion-demo-dev
+        IMAGE_TAG: latest
+      run: |
+        export COMMIT_SHA=$(git rev-parse --short HEAD)
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg COMMIT_SHA=${COMMIT_SHA} .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
   deploy_to_prod:
     runs-on: ubuntu-latest
     needs: deploy_to_dev
