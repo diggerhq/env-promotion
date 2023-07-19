@@ -8,7 +8,7 @@ resource "aws_route53_record" "cloud_web_cname_record" {
   name    = "${var.cloud_web_subdomain_name}.${var.hosted_zone_name}"
   type    = "CNAME"
   ttl     = "60"
-  records = [module.cloud_web.alb_dns]
+  records = [module.demo_web.alb_dns]
 }
 
 resource "aws_acm_certificate" "cloud_web_acm_certificate" {
