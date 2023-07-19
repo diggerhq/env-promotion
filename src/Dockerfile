@@ -1,7 +1,7 @@
 FROM golang:1.20.4 as builder
 
 # Set the working directory
-WORKDIR $GOPATH/src/github.com/diggerhq/cloud
+WORKDIR /build
 
 # Copy all required source, blacklist files that are not required through `.dockerignore`
 COPY . .
@@ -28,7 +28,7 @@ WORKDIR /app
 EXPOSE 3000
 
 # Copy the binary to the corresponding folder
-COPY --from=builder /go/src/github.com/diggerhq/cloud/cloud .
+COPY --from=builder /build .
 
 # Run the binary
 CMD ["/app/cloud"]

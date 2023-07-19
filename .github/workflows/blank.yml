@@ -9,23 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET Core
-      run: echo  Setup .NET Core
-      
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
     - name: Build
-      run: echo  Build
+      run: cd src; go build -v
       
-    - name: Publish
-      run: echo  Publish
-      
-    - name: Zip Functions Package
-      run: echo  Zip Functions Package
-      
-    - name: Upload Deployment Zip
-      run: echo  Upload Deployment Zip
-       
-    - name: Upload Deployment Script
-      run: echo  Upload Deployment Script
+    - name: Test
+      run: cd src; go test -v
+
       
   deploy_to_dev:
     runs-on: ubuntu-latest
