@@ -1,5 +1,9 @@
 projects:
-- name: infra
+- name: dev
+  dir: infra
+  workflow: default
+
+- name: prod
   dir: infra
   workflow: default
 
