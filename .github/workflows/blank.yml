@@ -43,6 +43,7 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DIGGER_GITHUB_TOKEN: ${{ secrets.DIGGER_GITHUB_TOKEN }}
         ENV_NAME: ${{ vars.ENV_NAME }}
 
     - name: digger apply run
@@ -61,8 +62,8 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DIGGER_GITHUB_TOKEN: ${{ secrets.DIGGER_GITHUB_TOKEN }}
         ENV_NAME: ${{ vars.ENV_NAME }}
-
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -103,6 +104,7 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DIGGER_GITHUB_TOKEN: ${{ secrets.DIGGER_GITHUB_TOKEN }}
         ENV_NAME: ${{ vars.ENV_NAME }}
 
     - name: digger apply run
@@ -121,6 +123,7 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DIGGER_GITHUB_TOKEN: ${{ secrets.DIGGER_GITHUB_TOKEN }}
         ENV_NAME: ${{ vars.ENV_NAME }}
 
     - name: Login to Amazon ECR
