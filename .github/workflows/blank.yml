@@ -28,7 +28,7 @@ jobs:
     environment: dev
     steps:
     - name: digger plan run
-      uses: diggerhq/digger@env-promo-demo
+      uses: diggerhq/digger@venv-promotion-demo
       with:
         mode: manual
         command: "digger plan"
@@ -47,7 +47,7 @@ jobs:
         ENV_NAME: ${{ vars.ENV_NAME }}
 
     - name: digger apply run
-      uses: diggerhq/digger@env-promo-demo
+      uses: diggerhq/digger@venv-promotion-demo
       with:
         mode: manual
         command: "digger apply"
@@ -89,7 +89,7 @@ jobs:
     environment: prod
     steps:
     - name: digger plan run
-      uses: diggerhq/digger@env-promo-demo
+      uses: diggerhq/digger@venv-promotion-demo
       with:
         mode: manual
         command: "digger plan"
@@ -108,7 +108,7 @@ jobs:
         ENV_NAME: ${{ vars.ENV_NAME }}
 
     - name: digger apply run
-      uses: diggerhq/digger@env-promo-demo
+      uses: diggerhq/digger@venv-promotion-demo
       with:
         mode: manual
         command: "digger apply"
